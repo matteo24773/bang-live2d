@@ -1,0 +1,24 @@
+# Ignora tutti i file .pyc (file compilati Python)
+*.pyc
+
+# Ignora cartelle di ambiente virtuale
+venv/
+.env/
+
+# Ignora file temporanei
+*.log
+*.tmp
+.DS_Store
+
+# Ignora file di configurazione privati
+config.json
+segreto.txt
+
+# Ignora cartelle generate
+__pycache__/
+build/
+dist/
+
+# Ignora file da IDE (Visual Studio Code, PyCharm, ecc.)
+.vscode/
+.idea/
