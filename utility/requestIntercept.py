@@ -10,7 +10,7 @@ class request():
 
     def page(self):
         self.pls = pls().start()
-        self.browser = self.pls.chromium.launch(executable_path="C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
+        self.browser = self.pls.firefox.launch(headless=True) 
         self.pag = self.browser.new_context().new_page()
     def goto(self):
         self.pag.goto(self.link)
