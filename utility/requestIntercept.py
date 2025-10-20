@@ -1,20 +1,20 @@
 from playwright.sync_api import sync_playwright as pls
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup as bs
+import asyncio
 
 json_data = {}
 class request():
-
-    def __init__(self, link):
-        self.link = link
 
     def page(self):
         self.pls = pls().start()
         self.browser = self.pls.chromium.launch(executable_path="C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
         self.pag = self.browser.new_context().new_page()
-    def goto(self):
-        self.pag.goto(self.link)
-        self.pag.wait_for_load_state("networkidle")
+    def goto(self, link):
+        self.pag.goto(link)
+        self.pag.wait_for_load_state("networkidle",timeout=60000)
+
+        return self.pag
     
     def close(self):
         self.pls.stop()
