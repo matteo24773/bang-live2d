@@ -1,6 +1,5 @@
 import playwright
 import utility.fileWriter as writer
-import json
 import utility.requestIntercept as req
 import os
 import time
@@ -42,7 +41,7 @@ def targetResourceExtract(key,responseTarget):
             makeDir(f"resources/{target}/{key}/expressions")
             mtnResponse=rq.pag.request.get(f"{baselink}/{key}_rip/{resource}")
             writer.write_binary(mtnResponse.body(), f"resources/{target}/{key}/expressions/{resource}")
-            model["motions"][resource.split(".mtn")[0]] = {"file": f"expressions/{resource}", "fade_in": 1000, "fade_out": 1000}
+            model["motions"][resource.split(".mtn")[0]] = [{"file": f"expressions/{resource}", "fade_in": 1000, "fade_out": 1000}]
         else:
             print(f"Risorsa non gestita: {resource}")
         time.sleep(0.3)  # Aggiungi un breve ritardo per evitare di sovraccaricare il server
@@ -54,7 +53,7 @@ def targetResourceExtract(key,responseTarget):
 infoResponse = rq.pag.goto(infoLink+"/_info.json")
 live2dinfo= infoResponse.json()["live2d"]["chara"]
 while target != "exit":
-    target = input("Inserisci il nome del personaggio (o 'exit' per uscire): ").strip()
+    target = input("Inserisci il codice del personaggio (o 'exit' per uscire): ").strip()
     if target == "exit":
         break
     if target.isnumeric() is False:
